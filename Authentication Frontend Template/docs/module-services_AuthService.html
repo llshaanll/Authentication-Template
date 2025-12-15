@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: services/AuthService</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: services/AuthService</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Authentication ServiceService layer that handles all authentication-related business logic and APIcommunications. Implements SOLID principles and acts as an intermediary betweenUI components (via AuthContext) and backend API (via ApiClient).SOLID Principles Implementation:1. Single Responsibility Principle (SRP):   - Only handles authentication operations   - Delegates API calls to ApiClient   - Delegates token storage to TokenManager2. Open/Closed Principle (OCP):   - Open for extension (can add new auth methods)   - Closed for modification (existing methods stable)3. Liskov Substitution Principle (LSP):   - Can be replaced with mock implementation for testing   - Interface contract maintained4. Interface Segregation Principle (ISP):   - Specific methods for each auth operation   - No monolithic "handleAuth" method   - Clients only use what they need5. Dependency Inversion Principle (DIP):   - Depends on ApiClient abstraction, not concrete implementation   - Depends on TokenManager abstraction   - High-level module doesn't depend on low-level detailsArchitecture Pattern: Service Layer- Separates business logic from UI components- Provides clean API for authentication operations- Centralizes error handling and data transformation- Makes testing easier (can mock service layer)Features:- User registration with validation- User login with JWT token management- User logout with session cleanup- Token verification and validation- Authentication state checking- Centralized error handling- Automatic token storage/retrievalSecurity Features:- Secure token storage via TokenManager- Automatic token injection via ApiClient- Token cleanup on logout/errors- Server-side token validation- No password storage (only transmitted)Error Handling Strategy:- Catch all API errors- Extract meaningful error messages- Re-throw as Error objects- Log errors for debugging- Always cleanup on failure</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>2025-12-16</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>mr.shaan</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Import and use in AuthContextimport AuthService from './services/AuthService';const login = async (credentials) => {  try {    const response = await AuthService.login(credentials);    setUser(response.data.user);  } catch (error) {    setError(error.message);  }};</code></pre>
+
+    <pre class="prettyprint"><code>// Check authentication statusif (AuthService.isAuthenticated()) {  const user = AuthService.getCurrentUser();  console.log('Logged in as:', user.name);}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="module:services/AuthService"><span class="type-signature">(constant) </span>module:services/AuthService<span class="type-signature"> :AuthService</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Singleton AuthService InstanceSingle shared instance exported for use throughout the application.Ensures consistent state and configuration.Import and use directly:
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line725">line 725</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>import AuthService from './services/AuthService';</code></pre>
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:./ApiClient</li>
+        
+            <li>module:../utils/TokenManager</li>
+        </ul>
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-services_AuthService-AuthService.html">AuthService</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-services_AuthService-AuthService.html">AuthService</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getCurrentUser"><span class="type-signature">(inner) </span>getCurrentUser<span class="signature">()</span><span class="type-signature"> &rarr; {Object|null|string|string|string|string|string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Get current authenticated user from localStorageRetrieves the stored user object from localStorage withoutmaking an API call. Returns cached user data.Data Source:- Retrieved from localStorage (key: 'user')- Stored during login- Cleared during logout- Synchronized with backend user dataUse Cases:- Display user info in UI- Check user permissions/roles- Populate forms with user data- Show user profileNote: This is cached data. For fresh data, call API endpoint.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line539">line 539</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    User object or null if not logged in
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.id - User ID (UUID)
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.name - User's full name
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.email - User's email address
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    [return.contact] - User's contact number
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.createdAt - Account creation timestamp
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Get current userconst user = AuthService.getCurrentUser();if (user) {  console.log('Logged in as:', user.name);} else {  console.log('Not logged in');}</code></pre>
+
+    <pre class="prettyprint"><code>// Display in componentfunction Header() {  const user = AuthService.getCurrentUser();    return (    &lt;header>      {user ? (        &lt;div>Welcome, {user.name}&lt;/div>      ) : (        &lt;Link to="/login">Login&lt;/Link>      )}    &lt;/header>  );}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~isAuthenticated"><span class="type-signature">(inner) </span>isAuthenticated<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Check if user is currently authenticatedChecks if a valid JWT token exists in localStorage.Does NOT verify token validity with backend - only checks presence.Check Logic:- Returns true if token exists in localStorage- Returns false if no token found- Does not validate token signature or expirationUse Cases:- Quick authentication check in UI- Conditional rendering- Route protection (ProtectedRoute component)- Initial app load decisionNote: This only checks token existence, not validity.Token could be expired or invalid. Use verifyToken() foractual validation.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line597">line 597</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if token exists, false otherwise
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Check authentication statusif (AuthService.isAuthenticated()) {  console.log('User is logged in');} else {  console.log('User is not logged in');}</code></pre>
+
+    <pre class="prettyprint"><code>// Conditional renderingfunction App() {  return (    &lt;div>      {AuthService.isAuthenticated() ? (        &lt;Dashboard />      ) : (        &lt;Login />      )}    &lt;/div>  );}</code></pre>
+
+    <pre class="prettyprint"><code>// In ProtectedRoutefunction ProtectedRoute({ children }) {  if (!AuthService.isAuthenticated()) {    return &lt;Navigate to="/login" />;  }  return children;}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~login"><span class="type-signature">(async, inner) </span>login<span class="signature">(credentials)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>|boolean|string|Object|string|Object|string|string|string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Authenticate user and create sessionAuthenticates user with email/password credentials, receives JWT token,and stores authentication data in localStorage for persistent login.Login Flow:1. Send POST request with credentials2. Backend validates credentials against database3. Backend generates JWT token4. Backend creates session record5. Return token + user data6. Save token and user to localStorage7. Update AuthContext state8. Redirect to dashboard/intended pageToken Storage:- JWT token stored in localStorage (key: 'token')- User object stored in localStorage (key: 'user')- Token automatically injected in API requests- Token validated on app reloadSecurity Considerations:- Password never stored (only transmitted once)- Token transmitted over HTTPS- Token has expiration time (JWT exp claim)- Token can be invalidated server-side
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>credentials</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Login credentials
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">User's email address</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">User's password</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line241">line 241</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Authentication failed with error message
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    Login response with token and user data
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.success - Login success status
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.message - Success message
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data - Authentication data
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data.token - JWT access token
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data.user - User object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data.user.id - User ID (UUID)
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data.user.name - User's full name
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data.user.email - User's email
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Basic logintry {  const response = await AuthService.login({    email: 'john@example.com',    password: 'SecurePass123'  });    console.log('Logged in as:', response.data.user.name);  navigate('/dashboard');} catch (error) {  console.error('Login failed:', error.message);  setError('Invalid email or password');}</code></pre>
+
+    <pre class="prettyprint"><code>// With loading stateconst handleLogin = async (credentials) => {  setLoading(true);  try {    const response = await AuthService.login(credentials);    setUser(response.data.user);    navigate('/dashboard');  } catch (error) {    setError(error.message);  } finally {    setLoading(false);  }};</code></pre>
+
+    <pre class="prettyprint"><code>// With remember me functionalityconst handleLogin = async (credentials, rememberMe) => {  try {    const response = await AuthService.login(credentials);        if (rememberMe) {      // Token already saved by AuthService      console.log('Session will persist');    } else {      // Could implement session-only storage here      console.log('Session for this browser session only');    }        navigate('/dashboard');  } catch (error) {    setError(error.message);  }};</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~logout"><span class="type-signature">(async, inner) </span>logout<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Logout user and invalidate sessionLogs out the current user by invalidating their session on the backendand clearing all stored authentication data from localStorage.Logout Flow:1. Send POST request to /auth/logout2. Backend invalidates current session in database3. Backend may invalidate token (if using token blacklist)4. Clear token from localStorage5. Clear user data from localStorage6. Update AuthContext state (user = null)7. Redirect to login pageError Handling:- Even if API call fails, still clear local data- Ensures user appears logged out in UI- Prevents security issues from failed logout- Token won't work for future requests (401 from backend)Cleanup Guarantees:- localStorage always cleared (try/finally)- User state always reset- Protected routes become inaccessible- API calls will fail with 401
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line358">line 358</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Basic logoutconst handleLogout = async () => {  await AuthService.logout();  navigate('/login');};</code></pre>
+
+    <pre class="prettyprint"><code>// With confirmationconst handleLogout = async () => {  if (confirm('Are you sure you want to logout?')) {    try {      await AuthService.logout();      toast.success('Logged out successfully');      navigate('/');    } catch (error) {      // Still logged out locally even if API fails      toast.info('Logged out');      navigate('/');    }  }};</code></pre>
+
+    <pre class="prettyprint"><code>// Logout all devices (different endpoint)const handleLogoutAll = async () => {  try {    await ApiClient.post('/auth/logout/all');    TokenManager.clearAuthData();    navigate('/login');  } catch (error) {    console.error(error);  }};</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~register"><span class="type-signature">(async, inner) </span>register<span class="signature">(userData)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>|boolean|string|Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Register a new user accountCreates a new user account in the system. Does NOT automaticallylog the user in after registration, allowing for email verificationworkflows or explicit login requirements.Registration Flow:1. Validate user data (client-side in form)2. Send POST request to /auth/register3. Backend validates data (unique email, password strength, etc.)4. Backend creates user record in database5. Return success response (no token)6. User redirected to login pageValidation (Backend):- Email: Valid format, unique, required- Password: Minimum length, strength requirements- Name: Required, string- Contact: Optional, valid format if providedError Scenarios:- Duplicate email (409 Conflict)- Invalid data format (400 Bad Request)- Server error (500 Internal Server Error)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">User registration data
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's full name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's email address (must be unique)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's password (min 8 characters)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>contact</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Optional contact number</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Registration failed with error message from backend
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    Registration response
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.success - Registration success status
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.message - Success or error message
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    [return.data] - User data (without password)
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Basic registrationtry {  const response = await AuthService.register({    name: 'John Doe',    email: 'john@example.com',    password: 'SecurePass123',    contact: '+1234567890'  });    console.log('Registration successful:', response.message);  navigate('/login');} catch (error) {  console.error('Registration failed:', error.message);}</code></pre>
+
+    <pre class="prettyprint"><code>// With form validationconst handleRegister = async (formData) => {  // Client-side validation first  if (!isValidEmail(formData.email)) {    return setError('Invalid email format');  }    try {    await AuthService.register(formData);    setSuccess('Registration successful! Please login.');  } catch (error) {    if (error.message.includes('exists')) {      setError('Email already registered');    } else {      setError(error.message);    }  }};</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~verifyToken"><span class="type-signature">(async, inner) </span>verifyToken<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Object>|boolean|string|Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Verify current authentication tokenValidates the stored JWT token with the backend to ensure it'sstill valid and the session is active. Called automatically onapp initialization to restore previous session.Verification Flow:1. Token automatically sent via ApiClient interceptor2. Backend validates JWT signature3. Backend checks token expiration4. Backend verifies session exists in database5. Backend checks user still exists and is active6. Return verification responseToken Validation (Backend):- JWT signature valid (not tampered)- Token not expired (exp claim)- Session exists in user_sessions table- User account still active- Token not in blacklist (if implemented)Use Cases:- App initialization (restore session)- Periodic token refresh- Before sensitive operations- After coming back from idleError Handling:- Invalid token: Clear auth data, throw error- Expired token: Clear auth data, throw error- Network error: Let caller handle- Server error: Clear auth data (security measure)
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_AuthService.jsx.html">services/AuthService.jsx</a>, <a href="services_AuthService.jsx.html#line442">line 442</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Token verification failed
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    Verification response
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.success - Verification success status
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.message - Verification message
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.data - User data from token
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Verify on app initializationuseEffect(() => {  const initAuth = async () => {    if (AuthService.isAuthenticated()) {      try {        await AuthService.verifyToken();        const user = AuthService.getCurrentUser();        setUser(user);      } catch (error) {        // Token invalid, user must login again        console.log('Session expired');      }    }    setLoading(false);  };    initAuth();}, []);</code></pre>
+
+    <pre class="prettyprint"><code>// Verify before sensitive operationconst handleDeleteAccount = async () => {  try {    // Verify token still valid    await AuthService.verifyToken();        // Proceed with deletion    await deleteAccount();  } catch (error) {    // Token expired, redirect to login    navigate('/login');  }};</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

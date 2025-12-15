@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/ApiClient.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/ApiClient.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview API Client Service
  * 
  * Centralized HTTP client built on Axios for all API communications.
@@ -176,7 +204,7 @@ class ApiClient {
      * 3. Log request method and URL
      * 4. Return modified config
      * 
-     * Token Format: "Bearer <jwt-token>"
+     * Token Format: "Bearer &lt;jwt-token>"
      * 
      * Header Example:
      * Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
@@ -208,7 +236,7 @@ class ApiClient {
       /**
        * Request error handler
        * @param {Error} error - Request setup error
-       * @returns {Promise<never>} Rejected promise
+       * @returns {Promise&lt;never>} Rejected promise
        */
       (error) => {
         console.error('Request error:', error);
@@ -261,7 +289,7 @@ class ApiClient {
        * Automatically logs user out and redirects to login on authentication failure.
        * 
        * @param {import('axios').AxiosError} error - Response error object
-       * @returns {Promise<never>} Rejected promise with error
+       * @returns {Promise&lt;never>} Rejected promise with error
        */
       (error) => {
         // Log error details for debugging
@@ -301,7 +329,7 @@ class ApiClient {
    * @method get
    * @param {string} url - Endpoint URL (relative to baseURL)
    * @param {import('axios').AxiosRequestConfig} [config={}] - Optional Axios config
-   * @returns {Promise<import('axios').AxiosResponse>} Response with data
+   * @returns {Promise&lt;import('axios').AxiosResponse>} Response with data
    * 
    * @throws {Error} Network errors, server errors, or validation errors
    * 
@@ -344,7 +372,7 @@ class ApiClient {
    * @param {string} url - Endpoint URL (relative to baseURL)
    * @param {Object} [data={}] - Request body data
    * @param {import('axios').AxiosRequestConfig} [config={}] - Optional Axios config
-   * @returns {Promise<import('axios').AxiosResponse>} Response with created data
+   * @returns {Promise&lt;import('axios').AxiosResponse>} Response with created data
    * 
    * @throws {Error} Validation errors, server errors, or network errors
    * 
@@ -392,7 +420,7 @@ class ApiClient {
    * @param {string} url - Endpoint URL (relative to baseURL)
    * @param {Object} [data={}] - Updated resource data
    * @param {import('axios').AxiosRequestConfig} [config={}] - Optional Axios config
-   * @returns {Promise<import('axios').AxiosResponse>} Response with updated data
+   * @returns {Promise&lt;import('axios').AxiosResponse>} Response with updated data
    * 
    * @throws {Error} Validation errors, not found errors, or server errors
    * 
@@ -431,7 +459,7 @@ class ApiClient {
    * @method delete
    * @param {string} url - Endpoint URL (relative to baseURL)
    * @param {import('axios').AxiosRequestConfig} [config={}] - Optional Axios config
-   * @returns {Promise<import('axios').AxiosResponse>} Response confirming deletion
+   * @returns {Promise&lt;import('axios').AxiosResponse>} Response confirming deletion
    * 
    * @throws {Error} Not found errors, permission errors, or server errors
    * 
@@ -471,3 +499,26 @@ class ApiClient {
  * @default
  */
 export default new ApiClient();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

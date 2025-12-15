@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: components/layout/Header</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: components/layout/Header</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Navigation Header ComponentPrimary navigation component with responsive design, user authentication state,profile dropdown menu, and smooth animations. Provides consistent navigationexperience across the application with sticky positioning and shadow effects.Features:- Sticky header with shadow- Responsive design (mobile + desktop)- User profile dropdown menu- Authentication state display- Smooth dropdown animations- Click-outside detection for dropdown- Route navigation integration- Avatar with user initials- Logout functionalityComponent States:- Authenticated: Shows profile dropdown with user info- Unauthenticated: Shows Sign In / Sign Up buttons- Dropdown Open: Shows profile menu options- Dropdown Closed: Compact user displayAccessibility Features:- Semantic HTML (header, nav)- Keyboard navigation support- Focus management for dropdown- ARIA attributes for interactive elements- Screen reader friendly- Color contrast compliancePerformance Optimizations:- Event listener cleanup on unmount- Minimal re-renders with proper state management- CSS animations (GPU accelerated)- Efficient click-outside detection</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>2025-12-16</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>mr.shaan</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_layout_Header.jsx.html">components/layout/Header.jsx</a>, <a href="components_layout_Header.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Basic usage in layoutimport Header from './components/layout/Header';function Layout() {  return (    &lt;div>      &lt;Header />      &lt;main>{children}&lt;/main>    &lt;/div>  );}</code></pre>
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:react</li>
+        
+            <li>module:react-router-dom</li>
+        
+            <li>module:../../context/AuthContext</li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~Header"><span class="type-signature">(inner) </span>Header<span class="signature">()</span><span class="type-signature"> &rarr; {React.ReactElement}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Header ComponentRenders the application's main navigation header with user authenticationintegration, profile dropdown, and responsive design.Component Architecture:- Container: Max-width centered layout- Left Section: Logo and brand- Center Section: Navigation links (authenticated users)- Right Section: User menu or auth buttonsDropdown Behavior:- Toggle: Click user avatar/info- Close: Click outside, navigate, logout- Animation: Smooth slide-down effect- Position: Right-aligned below avatarState Management:- isDropdownOpen: Controls dropdown visibility- dropdownRef: Reference for click-outside detection- user: From AuthContext (current user data)- isAuthenticated: From AuthContext (auth status)
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_layout_Header.jsx.html">components/layout/Header.jsx</a>, <a href="components_layout_Header.jsx.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Rendered header component
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">React.ReactElement</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// In app layout&lt;Header /></code></pre>
+
+    <pre class="prettyprint"><code>// With custom wrapper&lt;div className="app-layout">  &lt;Header />  &lt;main className="content">{children}&lt;/main>&lt;/div></code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~handleLogout"><span class="type-signature">(async, inner) </span>handleLogout<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handles user logoutCalls logout function from AuthContext, clears authentication data,and redirects user to login page.Logout Flow:1. Call AuthContext logout (API call + clear localStorage)2. Navigate to login page3. User state resets to unauthenticated4. Protected routes become inaccessible
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_layout_Header.jsx.html">components/layout/Header.jsx</a>, <a href="components_layout_Header.jsx.html#line169">line 169</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>&lt;button onClick={handleLogout}>Logout&lt;/button></code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

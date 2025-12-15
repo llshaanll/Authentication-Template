@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/layout/Header.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/layout/Header.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview Navigation Header Component
  * 
  * Primary navigation component with responsive design, user authentication state,
@@ -51,10 +79,10 @@
  * 
  * function Layout() {
  *   return (
- *     <div>
- *       <Header />
- *       <main>{children}</main>
- *     </div>
+ *     &lt;div>
+ *       &lt;Header />
+ *       &lt;main>{children}&lt;/main>
+ *     &lt;/div>
  *   );
  * }
  */
@@ -93,14 +121,14 @@ import { useAuth } from '../../context/AuthContext';
  * 
  * @example
  * // In app layout
- * <Header />
+ * &lt;Header />
  * 
  * @example
  * // With custom wrapper
- * <div className="app-layout">
- *   <Header />
- *   <main className="content">{children}</main>
- * </div>
+ * &lt;div className="app-layout">
+ *   &lt;Header />
+ *   &lt;main className="content">{children}&lt;/main>
+ * &lt;/div>
  */
 const Header = () => {
   /**
@@ -126,7 +154,7 @@ const Header = () => {
   
   /**
    * Reference to dropdown container for click-outside detection
-   * @type {React.RefObject<HTMLDivElement>}
+   * @type {React.RefObject&lt;HTMLDivElement>}
    */
   const dropdownRef = useRef(null);
 
@@ -153,7 +181,7 @@ const Header = () => {
      */
     const handleClickOutside = (event) => {
       // Check if dropdown exists and click is outside
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (dropdownRef.current &amp;&amp; !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
     };
@@ -180,10 +208,10 @@ const Header = () => {
    * 
    * @async
    * @function handleLogout
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    * 
    * @example
-   * <button onClick={handleLogout}>Logout</button>
+   * &lt;button onClick={handleLogout}>Logout&lt;/button>
    */
   const handleLogout = async () => {
     await logout();
@@ -202,54 +230,54 @@ const Header = () => {
    * - Dropdown: Absolutely positioned, animated
    */
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    &lt;header className="bg-white shadow-md sticky top-0 z-50">
+      &lt;div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        &lt;div className="flex justify-between items-center h-16">
           
           {/* ========== Logo Section ========== */}
-          <Link 
+          &lt;Link 
             to="/" 
             className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
             aria-label="Go to homepage"
           >
             {/* Logo Icon */}
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-xl">D</span>
-            </div>
+            &lt;div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-sm">
+              &lt;span className="text-white font-bold text-xl">D&lt;/span>
+            &lt;/div>
             {/* Brand Name */}
-            <span className="text-xl font-bold text-gray-900 tracking-tight">
+            &lt;span className="text-xl font-bold text-gray-900 tracking-tight">
               DayHom
-            </span>
-          </Link>
+            &lt;/span>
+          &lt;/Link>
 
           {/* ========== Navigation Links (Desktop Only, Authenticated) ========== */}
-          <nav className="hidden md:flex items-center space-x-8" role="navigation">
-            {isAuthenticated && (
-              <>
-                <Link 
+          &lt;nav className="hidden md:flex items-center space-x-8" role="navigation">
+            {isAuthenticated &amp;&amp; (
+              &lt;>
+                &lt;Link 
                   to="/dashboard" 
                   className="text-gray-700 hover:text-orange-600 font-medium transition-colors"
                   aria-label="Go to dashboard"
                 >
                   Dashboard
-                </Link>
-                <Link 
+                &lt;/Link>
+                &lt;Link 
                   to="/profile" 
                   className="text-gray-700 hover:text-orange-600 font-medium transition-colors"
                   aria-label="Go to profile"
                 >
                   Profile
-                </Link>
-              </>
+                &lt;/Link>
+              &lt;/>
             )}
-          </nav>
+          &lt;/nav>
 
           {/* ========== User Menu / Auth Buttons ========== */}
-          <div className="flex items-center space-x-4">
+          &lt;div className="flex items-center space-x-4">
             {isAuthenticated ? (
               /* Authenticated User: Profile Dropdown */
-              <div className="relative" ref={dropdownRef}>
-                <button
+              &lt;div className="relative" ref={dropdownRef}>
+                &lt;button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-lg p-1 transition-all"
                   aria-expanded={isDropdownOpen}
@@ -257,24 +285,24 @@ const Header = () => {
                   aria-label="Open user menu"
                 >
                   {/* User Avatar */}
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center shadow-sm">
-                    <span className="text-orange-700 font-semibold text-sm">
+                  &lt;div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center shadow-sm">
+                    &lt;span className="text-orange-700 font-semibold text-sm">
                       {user?.name?.charAt(0).toUpperCase() || 'U'}
-                    </span>
-                  </div>
+                    &lt;/span>
+                  &lt;/div>
                   
                   {/* User Info (Desktop Only) */}
-                  <div className="hidden md:block text-left">
-                    <p className="text-sm font-semibold text-gray-900 leading-tight">
+                  &lt;div className="hidden md:block text-left">
+                    &lt;p className="text-sm font-semibold text-gray-900 leading-tight">
                       {user?.name || 'User'}
-                    </p>
-                    <p className="text-xs text-gray-500 leading-tight">
+                    &lt;/p>
+                    &lt;p className="text-xs text-gray-500 leading-tight">
                       {user?.email || 'user@example.com'}
-                    </p>
-                  </div>
+                    &lt;/p>
+                  &lt;/div>
                   
                   {/* Dropdown Arrow */}
-                  <svg
+                  &lt;svg
                     className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
                       isDropdownOpen ? 'rotate-180' : ''
                     }`}
@@ -283,90 +311,90 @@ const Header = () => {
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path 
+                    &lt;path 
                       strokeLinecap="round" 
                       strokeLinejoin="round" 
                       strokeWidth={2} 
                       d="M19 9l-7 7-7-7" 
                     />
-                  </svg>
-                </button>
+                  &lt;/svg>
+                &lt;/button>
 
                 {/* ========== Dropdown Menu ========== */}
-                {isDropdownOpen && (
-                  <div 
+                {isDropdownOpen &amp;&amp; (
+                  &lt;div 
                     className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg py-2 border border-gray-200 animate-slideDown"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu"
                   >
                     {/* Profile Link */}
-                    <Link
+                    &lt;Link
                       to="/profile"
                       className="flex items-center space-x-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                       onClick={() => setIsDropdownOpen(false)}
                       role="menuitem"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                      <span className="font-medium">Your Profile</span>
-                    </Link>
+                      &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      &lt;/svg>
+                      &lt;span className="font-medium">Your Profile&lt;/span>
+                    &lt;/Link>
                     
                     {/* Settings Link */}
-                    <Link
+                    &lt;Link
                       to="/settings"
                       className="flex items-center space-x-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                       onClick={() => setIsDropdownOpen(false)}
                       role="menuitem"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <span className="font-medium">Settings</span>
-                    </Link>
+                      &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      &lt;/svg>
+                      &lt;span className="font-medium">Settings&lt;/span>
+                    &lt;/Link>
 
                     {/* Divider */}
-                    <hr className="my-2 border-gray-200" />
+                    &lt;hr className="my-2 border-gray-200" />
 
                     {/* Logout Button */}
-                    <button
+                    &lt;button
                       onClick={handleLogout}
                       className="w-full flex items-center space-x-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
                       role="menuitem"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                      </svg>
-                      <span className="font-medium">Logout</span>
-                    </button>
-                  </div>
+                      &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      &lt;/svg>
+                      &lt;span className="font-medium">Logout&lt;/span>
+                    &lt;/button>
+                  &lt;/div>
                 )}
-              </div>
+              &lt;/div>
             ) : (
               /* Unauthenticated User: Sign In / Sign Up Buttons */
-              <div className="flex items-center space-x-3">
-                <Link 
+              &lt;div className="flex items-center space-x-3">
+                &lt;Link 
                   to="/login" 
                   className="px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors rounded-lg hover:bg-gray-50"
                 >
                   Sign In
-                </Link>
-                <Link 
+                &lt;/Link>
+                &lt;Link 
                   to="/signup" 
                   className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 shadow-sm hover:shadow-md transition-all"
                 >
                   Sign Up
-                </Link>
-              </div>
+                &lt;/Link>
+              &lt;/div>
             )}
-          </div>
-        </div>
-      </div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
 
       {/* ========== Inline Styles: Dropdown Animation ========== */}
-      <style>{`
+      &lt;style>{`
         /* Slide-down animation for dropdown menu */
         @keyframes slideDown {
           from {
@@ -390,10 +418,33 @@ const Header = () => {
             animation: none;
           }
         }
-      `}</style>
-    </header>
+      `}&lt;/style>
+    &lt;/header>
   );
 };
 
 
 export default Header;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

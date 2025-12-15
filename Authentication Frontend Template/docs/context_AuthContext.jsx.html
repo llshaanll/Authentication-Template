@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: context/AuthContext.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: context/AuthContext.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview Authentication Context Provider
  * 
  * Centralized authentication state management using React Context API.
@@ -57,9 +85,9 @@
  * 
  * function App() {
  *   return (
- *     <AuthProvider>
- *       <YourApp />
- *     </AuthProvider>
+ *     &lt;AuthProvider>
+ *       &lt;YourApp />
+ *     &lt;/AuthProvider>
  *   );
  * }
  * 
@@ -70,13 +98,13 @@
  * function Profile() {
  *   const { user, logout, isAuthenticated } = useAuth();
  *   
- *   if (!isAuthenticated) return <Redirect to="/login" />;
+ *   if (!isAuthenticated) return &lt;Redirect to="/login" />;
  *   
  *   return (
- *     <div>
- *       <h1>Welcome, {user.name}</h1>
- *       <button onClick={logout}>Logout</button>
- *     </div>
+ *     &lt;div>
+ *       &lt;h1>Welcome, {user.name}&lt;/h1>
+ *       &lt;button onClick={logout}>Logout&lt;/button>
+ *     &lt;/div>
  *   );
  * }
  */
@@ -101,7 +129,7 @@ import AuthService from '../services/AuthService';
  * @property {Function} logout - Logout user function
  * @property {boolean} isAuthenticated - Computed authentication status
  * 
- * @type {React.Context<AuthContextValue|null>}
+ * @type {React.Context&lt;AuthContextValue|null>}
  */
 const AuthContext = createContext(null);
 
@@ -145,9 +173,9 @@ const AuthContext = createContext(null);
  * 
  * function Root() {
  *   return (
- *     <AuthProvider>
- *       <App />
- *     </AuthProvider>
+ *     &lt;AuthProvider>
+ *       &lt;App />
+ *     &lt;/AuthProvider>
  *   );
  * }
  * 
@@ -155,14 +183,14 @@ const AuthContext = createContext(null);
  * // With router
  * function Root() {
  *   return (
- *     <BrowserRouter>
- *       <AuthProvider>
- *         <Routes>
- *           <Route path="/login" element={<Login />} />
- *           <Route path="/dashboard" element={<Dashboard />} />
- *         </Routes>
- *       </AuthProvider>
- *     </BrowserRouter>
+ *     &lt;BrowserRouter>
+ *       &lt;AuthProvider>
+ *         &lt;Routes>
+ *           &lt;Route path="/login" element={&lt;Login />} />
+ *           &lt;Route path="/dashboard" element={&lt;Dashboard />} />
+ *         &lt;/Routes>
+ *       &lt;/AuthProvider>
+ *     &lt;/BrowserRouter>
  *   );
  * }
  */
@@ -232,7 +260,7 @@ export const AuthProvider = ({ children }) => {
    * 
    * @async
    * @function initializeAuth
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    * 
    * @throws {Error} Catches all errors, logs them, clears auth state
    * 
@@ -294,7 +322,7 @@ export const AuthProvider = ({ children }) => {
    * @param {string} userData.password - User's password (min 8 chars)
    * @param {string} [userData.contact] - Optional contact number
    * 
-   * @returns {Promise<Object>} Registration response from backend
+   * @returns {Promise&lt;Object>} Registration response from backend
    * @returns {boolean} return.success - Registration success status
    * @returns {string} return.message - Success or error message
    * @returns {Object} [return.data] - Created user data (no password)
@@ -368,7 +396,7 @@ export const AuthProvider = ({ children }) => {
    * @param {string} credentials.email - User's email address
    * @param {string} credentials.password - User's password
    * 
-   * @returns {Promise<Object>} Login response from backend
+   * @returns {Promise&lt;Object>} Login response from backend
    * @returns {boolean} return.success - Login success status
    * @returns {string} return.message - Success or error message
    * @returns {Object} return.data - Login data
@@ -439,7 +467,7 @@ export const AuthProvider = ({ children }) => {
    * 
    * @async
    * @function logout
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    * 
    * @example
    * const { logout } = useAuth();
@@ -505,9 +533,9 @@ export const AuthProvider = ({ children }) => {
    * and operations available to all descendant components.
    */
   return (
-    <AuthContext.Provider value={value}>
+    &lt;AuthContext.Provider value={value}>
       {children}
-    </AuthContext.Provider>
+    &lt;/AuthContext.Provider>
   );
 };
 
@@ -547,14 +575,14 @@ export const AuthProvider = ({ children }) => {
  *   const { user, isAuthenticated, logout } = useAuth();
  *   
  *   if (!isAuthenticated) {
- *     return <p>Please login</p>;
+ *     return &lt;p>Please login&lt;/p>;
  *   }
  *   
  *   return (
- *     <div>
- *       <p>Welcome, {user.name}</p>
- *       <button onClick={logout}>Logout</button>
- *     </div>
+ *     &lt;div>
+ *       &lt;p>Welcome, {user.name}&lt;/p>
+ *       &lt;button onClick={logout}>Logout&lt;/button>
+ *     &lt;/div>
  *   );
  * }
  * 
@@ -574,4 +602,26 @@ export const useAuth = () => {
   }
   
   return context;
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

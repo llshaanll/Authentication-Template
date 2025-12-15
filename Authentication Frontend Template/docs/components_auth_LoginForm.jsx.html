@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/auth/LoginForm.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/auth/LoginForm.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @fileoverview Login Form Component
  * 
  * Provides a secure login interface with client-side validation, error handling,
@@ -32,7 +60,7 @@
  * 
  * @example
  * // Usage in React Router
- * <Route path="/login" element={<LoginForm />} />
+ * &lt;Route path="/login" element={&lt;LoginForm />} />
  * 
  * @example
  * // With custom redirect
@@ -40,9 +68,9 @@
  * 
  * function App() {
  *   return (
- *     <Routes>
- *       <Route path="/login" element={<LoginForm />} />
- *     </Routes>
+ *     &lt;Routes>
+ *       &lt;Route path="/login" element={&lt;LoginForm />} />
+ *     &lt;/Routes>
  *   );
  * }
  */
@@ -105,7 +133,7 @@ const LoginForm = () => {
   
   /**
    * Form validation and API error state
-   * @type {Object.<string, string>}
+   * @type {Object.&lt;string, string>}
    * @property {string} [email] - Email validation error message
    * @property {string} [password] - Password validation error message
    * @property {string} [submit] - API authentication error message
@@ -120,11 +148,11 @@ const LoginForm = () => {
    * validation errors as user corrects their input.
    * 
    * @function handleChange
-   * @param {React.ChangeEvent<HTMLInputElement>} e - Input change event
+   * @param {React.ChangeEvent&lt;HTMLInputElement>} e - Input change event
    * @returns {void}
    * 
    * @example
-   * <input name="email" onChange={handleChange} />
+   * &lt;input name="email" onChange={handleChange} />
    */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -147,7 +175,7 @@ const LoginForm = () => {
    * - Password: Required
    * 
    * @function validate
-   * @returns {Object.<string, string>} Object containing field errors
+   * @returns {Object.&lt;string, string>} Object containing field errors
    * @returns {string} [return.email] - Email validation error
    * @returns {string} [return.password] - Password validation error
    * 
@@ -194,15 +222,15 @@ const LoginForm = () => {
    * 
    * @async
    * @function handleSubmit
-   * @param {React.FormEvent<HTMLFormElement>} e - Form submission event
-   * @returns {Promise<void>}
+   * @param {React.FormEvent&lt;HTMLFormElement>} e - Form submission event
+   * @returns {Promise&lt;void>}
    * 
    * @throws {Error} Authentication errors are caught and displayed to user
    * 
    * @example
-   * <form onSubmit={handleSubmit}>
+   * &lt;form onSubmit={handleSubmit}>
    *   // form fields
-   * </form>
+   * &lt;/form>
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -248,18 +276,18 @@ const LoginForm = () => {
    * - Focus management
    */
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-gray-100 px-4">
-      <div className="card max-w-md w-full">
+    &lt;div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-gray-100 px-4">
+      &lt;div className="card max-w-md w-full">
         {/* Form Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your account</p>
-        </div>
+        &lt;div className="text-center mb-8">
+          &lt;h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back&lt;/h1>
+          &lt;p className="text-gray-600">Sign in to your account&lt;/p>
+        &lt;/div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+        &lt;form onSubmit={handleSubmit} className="space-y-6" noValidate>
           {/* Email Input Field */}
-          <Input
+          &lt;Input
             label="Email Address"
             type="email"
             name="email"
@@ -269,14 +297,14 @@ const LoginForm = () => {
             required
             error={errors.email}
             icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-              </svg>
+              &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+              &lt;/svg>
             }
           />
 
           {/* Password Input Field */}
-          <Input
+          &lt;Input
             label="Password"
             type="password"
             name="password"
@@ -286,49 +314,71 @@ const LoginForm = () => {
             required
             error={errors.password}
             icon={
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+              &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              &lt;/svg>
             }
           />
 
           {/* API Error Message Display */}
-          {errors.submit && (
-            <div 
+          {errors.submit &amp;&amp; (
+            &lt;div 
               className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg"
               role="alert"
               aria-live="assertive"
             >
               {errors.submit}
-            </div>
+            &lt;/div>
           )}
 
           {/* Submit Button */}
-          <Button 
+          &lt;Button 
             type="submit" 
             fullWidth 
             loading={loading}
             aria-label={loading ? 'Signing in...' : 'Sign in to your account'}
           >
             Sign In
-          </Button>
+          &lt;/Button>
 
           {/* Sign-up Link */}
-          <p className="text-center text-sm text-gray-600">
+          &lt;p className="text-center text-sm text-gray-600">
             Don't have an account?{' '}
-            <Link 
+            &lt;Link 
               to="/signup" 
               className="text-orange-600 hover:text-orange-700 font-semibold transition-colors"
               aria-label="Navigate to sign up page"
             >
               Sign up
-            </Link>
-          </p>
-        </form>
-      </div>
-    </div>
+            &lt;/Link>
+          &lt;/p>
+        &lt;/form>
+      &lt;/div>
+    &lt;/div>
   );
 };
 
 
-export default LoginForm;
+export default LoginForm;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: utils/TokenManager</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: utils/TokenManager</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Token Manager UtilityCentralized utility for managing JWT tokens and authentication data in browserlocalStorage. Provides a clean, consistent API for storing, retrieving, andclearing authentication state with built-in error handling.SOLID Principles Implementation:1. Single Responsibility Principle (SRP):   - Only handles token and session storage operations   - Does not handle API calls or authentication logic   - Focuses solely on localStorage interactions2. Open/Closed Principle (OCP):   - Open for extension (can add sessionStorage, cookies, IndexedDB)   - Closed for modification (existing methods stable)   - Can be subclassed for different storage strategies3. Liskov Substitution Principle (LSP):   - Can be replaced with alternative storage implementation   - Interface contract maintained (getToken, saveAuthData, etc.)   - Mock implementations possible for testing4. Interface Segregation Principle (ISP):   - Small, focused methods (not monolithic)   - Each method has single purpose   - Clients use only what they need5. Dependency Inversion Principle (DIP):   - High-level modules depend on this abstraction   - Not dependent on concrete storage implementation   - Could be swapped with alternative storage (cookies, sessionStorage)Storage Strategy: localStorage- Persistent across browser sessions- Survives page refreshes- Cleared only on logout or manual deletion- Accessible across all tabs (same origin)- 5-10MB storage limit (browser dependent)Security Considerations:- localStorage accessible via JavaScript (XSS vulnerability)- Not accessible from other origins (CORS protection)- Should only store non-sensitive data- JWT tokens are generally safe (short expiration)- Never store passwords or payment info- Use HTTPS to prevent token interceptionAlternative Storage Options:- sessionStorage: Tab-specific, cleared on tab close- Cookies: HTTP-only option (immune to XSS)- IndexedDB: Larger storage, async API- Memory: Most secure, lost on refreshFeatures:- Persistent token storage- User data caching- Session ID management- Error-safe operations- JSON serialization/deserialization- Authentication state checking- Complete data cleanup</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>2025-12-16</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>mr.shaan</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Save authentication data after loginimport TokenManager from './utils/TokenManager';TokenManager.saveAuthData(token, user, sessionId);</code></pre>
+
+    <pre class="prettyprint"><code>// Check if user is authenticatedif (TokenManager.isAuthenticated()) {  const user = TokenManager.getUser();  console.log('Logged in as:', user.name);}</code></pre>
+
+    <pre class="prettyprint"><code>// Clear auth data on logoutTokenManager.clearAuthData();</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="module:utils/TokenManager"><span class="type-signature">(constant) </span>module:utils/TokenManager<span class="type-signature"> :TokenManager</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Singleton TokenManager InstanceSingle shared instance exported for use throughout the application.Ensures consistent storage key naming and centralized token management.Import and use directly:
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line634">line 634</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>import TokenManager from './utils/TokenManager';</code></pre>
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~clearAuthData"><span class="type-signature">(inner) </span>clearAuthData<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Clears all authentication data from localStorageRemoves all stored authentication-related data including token,user object, and session ID. Called on logout and authentication errors.Cleanup Operations:1. Remove JWT token2. Remove user object3. Remove session ID4. Leaves other localStorage data intactWhen to Call:- User logout (manual or automatic)- Token expired (401 response)- Token verification failed- User account deleted- Security breach detectedSide Effects:- User appears logged out immediately- Protected routes become inaccessible- API calls will fail with 401- App state reset to unauthenticatedSecurity Note:- Always call on logout (even if API fails)- Ensures local state matches auth state- Prevents stale token usage- Client-side security measure
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line447">line 447</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Clear on logoutconst logout = async () => {  try {    await api.post('/auth/logout');  } finally {    TokenManager.clearAuthData();    navigate('/login');  }};</code></pre>
+
+    <pre class="prettyprint"><code>// Clear on 401 error (token expired)if (error.response?.status === 401) {  TokenManager.clearAuthData();  window.location.href = '/login';}</code></pre>
+
+    <pre class="prettyprint"><code>// Clear on token verification failuretry {  await verifyToken();} catch (error) {  TokenManager.clearAuthData();  setUser(null);}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getSessionId"><span class="type-signature">(inner) </span>getSessionId<span class="signature">()</span><span class="type-signature"> &rarr; {string|null}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Retrieves session ID from localStorageGets the stored session identifier that tracks the current user session.Session ID is used for session management and multi-device tracking.Session Management:- Each login creates new session- Session tracked in database (user_sessions table)- Used for logout operations- Enables "logout all devices" featureSession ID Format:- UUID v4 format- Example: 550e8400-e29b-41d4-a716-446655440000- Generated by backend on loginUse Cases:- Logout current device only- Track active sessions- Multi-device session management- Session analytics
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line400">line 400</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Session UUID or null if not found
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Get session ID for logoutconst sessionId = TokenManager.getSessionId();if (sessionId) {  await api.post('/auth/logout', { sessionId });}</code></pre>
+
+    <pre class="prettyprint"><code>// Check active sessionconst sessionId = TokenManager.getSessionId();if (sessionId) {  const sessions = await api.get('/auth/sessions');  const currentSession = sessions.find(s => s.id === sessionId);  console.log('Current device:', currentSession.device);}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getToken"><span class="type-signature">(inner) </span>getToken<span class="signature">()</span><span class="type-signature"> &rarr; {string|null}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Retrieves JWT token from localStorageGets the stored JWT access token used for API authentication.Token is automatically injected into API requests by ApiClient.Token Format:- JWT: header.payload.signature (Base64 encoded)- Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...Token Contents (payload):- userId: User identifier- sessionId: Session identifier- exp: Expiration timestamp- iat: Issued at timestampUse Cases:- API request authentication (Authorization header)- Check if user is logged in- Token verification with backend- Session restoration on page load
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line256">line 256</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    JWT token string or null if not found
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Get token for API callconst token = TokenManager.getToken();if (token) {  config.headers.Authorization = `Bearer ${token}`;}</code></pre>
+
+    <pre class="prettyprint"><code>// Check token existenceif (TokenManager.getToken()) {  console.log('User has token');} else {  console.log('User not logged in');}</code></pre>
+
+    <pre class="prettyprint"><code>// Used in ApiClient interceptorthis.client.interceptors.request.use((config) => {  const token = TokenManager.getToken();  if (token) {    config.headers.Authorization = `Bearer ${token}`;  }  return config;});</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~getUser"><span class="type-signature">(inner) </span>getUser<span class="signature">()</span><span class="type-signature"> &rarr; {Object|null|string|string|string|string|string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Retrieves user data from localStorageGets the stored user object that was saved during login.Automatically deserializes JSON string back to JavaScript object.User Object Structure:- id: User UUID (primary key)- name: Full name- email: Email address- contact: Phone number (optional)- createdAt: Account creation dateData Freshness:- Cached data from login response- May be stale if updated elsewhere- For fresh data, call API endpoint- Consider periodic refreshError Handling:- Catches JSON.parse errors- Returns null on invalid JSON- Logs parsing errors- Never throws errorsUse Cases:- Display user profile info- Show user name in header- Pre-fill forms with user data- Check user permissions/roles
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line311">line 311</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    User object or null if not found/invalid
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.id - User UUID
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.name - User's full name
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.email - User's email address
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    [return.contact] - User's phone number
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    return.createdAt - ISO 8601 timestamp
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Get current userconst user = TokenManager.getUser();if (user) {  console.log(`Welcome back, ${user.name}!`);}</code></pre>
+
+    <pre class="prettyprint"><code>// Display in componentfunction UserProfile() {  const user = TokenManager.getUser();    if (!user) {    return &lt;Redirect to="/login" />;  }    return (    &lt;div>      &lt;h1>{user.name}&lt;/h1>      &lt;p>{user.email}&lt;/p>    &lt;/div>  );}</code></pre>
+
+    <pre class="prettyprint"><code>// Handle corrupted dataconst user = TokenManager.getUser();if (!user) {  // Data corrupted or not logged in  TokenManager.clearAuthData();  navigate('/login');}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~isAuthenticated"><span class="type-signature">(inner) </span>isAuthenticated<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Checks if user is authenticatedQuick check for authentication status by verifying token existence.Does NOT validate token signature or expiration - only checks presence.Check Logic:- Returns true if token string exists- Returns false if token is null/undefined/empty- Uses double negation (!!) to convert to booleanLimitations:- Does not verify token validity- Does not check token expiration- Does not validate with backend- Token could be malformed or expiredWhen to Use:- Initial UI rendering decisions- Route protection (ProtectedRoute)- Conditional component display- Quick authentication checksWhen NOT to Use:- Before sensitive operations (use verifyToken instead)- For security decisions (validate server-side)- When token freshness mattersValidation Flow:1. Initial check: isAuthenticated() (quick)2. Verify token: verifyToken() (secure)3. Use authenticated state
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line523">line 523</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if token exists, false otherwise
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Quick auth checkif (TokenManager.isAuthenticated()) {  console.log('Token exists');} else {  console.log('No token found');}</code></pre>
+
+    <pre class="prettyprint"><code>// Conditional renderingfunction App() {  const isAuth = TokenManager.isAuthenticated();    return (    &lt;div>      {isAuth ? &lt;Dashboard /> : &lt;Login />}    &lt;/div>  );}</code></pre>
+
+    <pre class="prettyprint"><code>// With token verificationconst checkAuth = async () => {  // Quick check first  if (!TokenManager.isAuthenticated()) {    return false;  }    // Verify token validity  try {    await AuthService.verifyToken();    return true;  } catch (error) {    return false;  }};</code></pre>
+
+    <pre class="prettyprint"><code>// In ProtectedRoute componentconst { isAuthenticated, loading } = useAuth();if (loading) {  return &lt;LoadingSpinner />;}if (!isAuthenticated) {  return &lt;Navigate to="/login" />;}return children;</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~saveAuthData"><span class="type-signature">(inner) </span>saveAuthData<span class="signature">(token, user, sessionId<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Saves authentication data to localStorageStores JWT token, user object, and optional session ID in localStoragefor persistent authentication across browser sessions and page refreshes.Storage Operations:1. Store raw JWT token string2. Serialize and store user object as JSON3. Store session ID if provided4. Handle any localStorage errors gracefullyError Scenarios:- localStorage full (quota exceeded)- localStorage disabled (privacy mode)- JSON serialization error (circular references)- Browser permissions deniedError Handling:- Catches all errors silently- Logs errors to console- Does not throw (prevents app crash)- Graceful degradation (app continues)Security Note:- Token stored as plaintext (vulnerable to XSS)- Use HTTPS to prevent token interception- Keep token expiration short (24h recommended)- Clear sensitive data on logout
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">JWT access token from backend</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">User object with profile data
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User UUID</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's full name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's email address</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>contact</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">User's contact number</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sessionId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">Optional session identifier</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_TokenManager.jsx.html">utils/TokenManager.jsx</a>, <a href="utils_TokenManager.jsx.html#line170">line 170</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Examples</h5>
+    
+    <pre class="prettyprint"><code>// Save after successful loginconst loginResponse = await api.post('/auth/login', credentials);const { token, user, sessionId } = loginResponse.data;TokenManager.saveAuthData(token, user, sessionId);</code></pre>
+
+    <pre class="prettyprint"><code>// Save without session IDTokenManager.saveAuthData(token, user);</code></pre>
+
+    <pre class="prettyprint"><code>// With error handling in callertry {  TokenManager.saveAuthData(token, user);  console.log('Auth data saved successfully');} catch (error) {  // Errors are caught internally and logged  // This catch won't execute}</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_auth_LoginForm.html">components/auth/LoginForm</a></li><li><a href="module-components_auth_SignupForm.html">components/auth/SignupForm</a></li><li><a href="module-components_common_Input.html">components/common/Input</a></li><li><a href="module-components_common_ProtectedRoute.html">components/common/ProtectedRoute</a></li><li><a href="module-components_layout_Header.html">components/layout/Header</a></li><li><a href="module-context_AuthContext.html">context/AuthContext</a></li><li><a href="module-services_ApiClient.html">services/ApiClient</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-utils_TokenManager.html">utils/TokenManager</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_ApiClient-ApiClient.html">ApiClient</a></li><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-utils_TokenManager-TokenManager.html">TokenManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Dec 16 2025 02:17:08 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
